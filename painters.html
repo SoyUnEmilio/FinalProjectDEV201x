@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>TypeScript HTML App</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" type="text/css" />
+    <link href="styles/app.css" rel="stylesheet" />
+</head>
+<body ng-app="famousPainters">
+    <div class="row">
+        <div class="col-md-1">
+            <img class="logoImg" src="images/brush.png" />
+        </div>
+        <div class="col-md-11 pull-left" ng-controller="PaintersController as vm">
+            <h1>Famous Painters</h1>
+            <select ng-model="vm.selectedPainter" ng-options="painter.name for painter in vm.painters"></select>
+
+            <div ng-show="vm.selectedPainter != null">
+                <h3>Author name</h3>
+                <strong>{{vm.selectedPainter.name}}</strong>
+                <h3>Style</h3>
+                <strong>{{vm.selectedPainter.style}}</strong>
+                <h3>examples</h3>
+                <ul>
+                    <li ng-repeat="str in vm.selectedPainter.examples">{{str}}</li>
+                </ul>
+            </div>
+
+            <div ng-show="vm.selectedPainter == null">
+                Please select a painter to know more...
+            </div>
+
+        </div>
+    </div>
+    <div id="content"></div>
+    <script src="scripts/angular.js"></script>
+    <script src="scripts/angular-resource.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/Painter/Painter.js"></script>
+    <script src="scripts/Painter/PainterController.js"></script>
+    <script src="scripts/Painter/PainterDataService.js"></script>
+
+</body>
+</html>
